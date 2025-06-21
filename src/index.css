@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 94.1%;
+  --radius: 0.75rem;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  --sidebar-background: 222.2 84% 4.9%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 217.2 91.2% 59.8%;
+  --sidebar-primary-foreground: 222.2 84% 4.9%;
+  --sidebar-accent: 217.2 32.6% 17.5%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-border: 217.2 32.6% 17.5%;
+  --sidebar-ring: 224.3 76.3% 94.1%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-aurora-dark text-foreground font-aurora;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Aurora gradient utilities */
+@layer components {
+  .aurora-gradient {
+    background: linear-gradient(90deg, #00FFD1 0%, #ADFF2F 100%);
+    background-size: 200% 200%;
+    animation: aurora-flow 8s ease-in-out infinite;
+  }
+
+  .aurora-text {
+    @apply font-aurora font-bold italic text-transparent bg-clip-text relative;
+    background: linear-gradient(90deg, #00FFD1 0%, #ADFF2F 100%);
+    background-size: 200% 200%;
+    animation: aurora-flow 8s ease-in-out infinite;
+    text-shadow:
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      2px 2px 0 #000;
+    letter-spacing: 0.01em;
+  }
+
+  .aurora-text::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    background: linear-gradient(90deg, #00FFD1 0%, #ADFF2F 100%);
+    background-size: 200% 200%;
+    animation: aurora-flow 8s ease-in-out infinite;
+    opacity: 0.15;
+    filter: blur(8px);
+    z-index: -1;
+  }
+
+  .glass-panel {
+    @apply backdrop-blur-xl bg-aurora-glass border border-aurora-glass-border rounded-3xl shadow-2xl relative;
+    box-shadow: 
+      0 8px 32px rgba(0, 255, 209, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 8px rgba(0, 255, 209, 0.3);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 255, 209, 0.4);
+  }
+
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    pointer-events: none;
+    box-shadow: 0 0 12px 2px rgba(0, 255, 209, 0.6);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .glass-panel:hover::before {
+    opacity: 1;
+  }
+
+  .glass-button {
+    @apply glass-panel px-6 py-3 transition-all duration-300 cursor-pointer select-none relative overflow-hidden;
+    box-shadow: 
+      0 4px 16px rgba(0, 255, 209, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-button:hover {
+    box-shadow: 
+      0 8px 32px rgba(0, 255, 209, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 20px rgba(0, 255, 209, 0.3);
+  }
+
+  .glass-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 15, 28, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00FFD1, #ADFF2F);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00FFD1, #ADFF2F);
+  box-shadow: 0 0 10px rgba(0, 255, 209, 0.5);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 255, 209, 0.3);
+  color: #ADFF2F;
+}
+
+/* Aurora particle effects */
+@keyframes aurora-particle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.aurora-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #00FFD1, #ADFF2F);
+  border-radius: 50%;
+  animation: aurora-particle 15s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
